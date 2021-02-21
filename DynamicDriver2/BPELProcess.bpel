@@ -1,0 +1,165 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon Apr 02 14:41:29 EST 2012
+  Author:  Vince
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="BPELProcess"
+         targetNamespace="http://xmlns.oracle.com/ATeamDynamic/DynamicDriver2/BPELProcess"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:client="http://xmlns.oracle.com/ATeamDynamic/DynamicDriver2/BPELProcess"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/ATeamDynamic/Service/Process"
+         xmlns:ns2="http://www.oracle.com/ateam/dynamic"
+         xmlns:ns3="http://schemas.xmlsoap.org/ws/2003/03/addressing"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns4="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+         xmlns:ns5="http://docs.oasis-open.org/wsbpel/2.0/serviceref" xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns6="http://xmlns.oracle.com/SCAD_ZHIC_Integ/IslamicCultureCourse/IslamicCultureCourseService">
+  <import namespace="http://docs.oasis-open.org/wsbpel/2.0/serviceref"
+          location="xsd/ws-bpel_serviceref.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+          location="xsd/wsaddr2004.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <import namespace="http://schemas.xmlsoap.org/ws/2003/03/addressing"
+          location="xsd/ws_addressing.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <import namespace="http://xmlns.oracle.com/ATeamDynamic/DynamicDriver2/BPELProcess"
+          location="BPELProcess.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/" ui:processWSDL="true"/>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="bpelprocess_client" partnerLinkType="client:BPELProcess"
+                 myRole="BPELProcessProvider"/>
+    <partnerLink name="Service1" partnerLinkType="ns6:IslamicCultureCourseService"
+                 partnerRole="IslamicCultureCourseServiceProvider"/>
+  </partnerLinks>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable"
+              messageType="client:BPELProcessRequestMessage"/>
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable"
+              messageType="client:BPELProcessResponseMessage"/>
+    <variable name="Invoke1_process_InputVariable"
+              messageType="ns1:ProcessRequestMessage"/>
+    <variable name="Invoke1_process_OutputVariable"
+              messageType="ns1:ProcessResponseMessage"/>
+    <variable name="EndpointReference" element="ns3:EndpointReference"/>
+    <variable name="serviceReference" element="ns5:service-ref"/>
+  </variables>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+    <!-- Receive input from requestor. (Note: This maps to operation defined in BPELProcess.wsdl) -->
+    <receive name="receiveInput" partnerLink="bpelprocess_client"
+             portType="client:BPELProcess" operation="process"
+             variable="inputVariable" createInstance="yes"/>
+    <!-- Generate reply to synchronous request -->
+    <assign name="Assign1">
+      <!--copy ignoreMissingFromData="yes" bpelx:insertMissingToData="yes">
+        <from><literal>
+            <service-ref xmlns="http://docs.oasis-open.org/wsbpel/2.0/serviceref">
+              <EndpointReference xmlns="http://schemas.xmlsoap.org/ws/2003/03/addressing"
+                           xmlns:ns1="http://xmlns.oracle.com/AteamDynamic/Service/Process">
+                <Address/>
+                <ServiceName>$EndpointReference/ns1:ServiceName</ServiceName>
+              </EndpointReference>
+            </service-ref>
+         </literal>$EndpointReference</from>
+        <to partnerLink="Service1"/>
+        </copy-->
+      <copy>
+        <from><literal><service-ref xmlns="http://docs.oasis-open.org/wsbpel/2.0/serviceref">
+<EndpointReference xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+                   xmlns:ns1="http://xmlns.oracle.com/AteamDynamic/Service/Process">                            
+<Address>http://scadnp-soa1.scad.ae:8001/soa-infra/services/ZHIC/IslamicCultureCourse/islamicculturecourseservice_client_ep</Address>/&gt;
+</EndpointReference>
+</service-ref></literal></from>
+        <to>$serviceReference</to>
+      </copy>
+      <copy>
+        <from>$inputVariable.payload/ns2:Endpoint</from>
+        <to>$serviceReference/ns4:EndpointReference/ns4:Address</to>
+      </copy>
+      <copy>
+        <from>$serviceReference</from>
+        <to partnerLink="Service1"/>
+      </copy>
+    </assign>
+    <assign name="Assign2">
+      <copy>
+        <from>$inputVariable.payload/ns2:parameter</from>
+        <to>$Invoke1_process_InputVariable.payload/ns2:parameter</to>
+      </copy>
+      <copy>
+        <from>$inputVariable.payload/ns2:Endpoint</from>
+        <to>$Invoke1_process_InputVariable.payload/ns2:Endpoint</to>
+      </copy>
+    </assign>
+    <invoke name="Invoke1" partnerLink="Service1" portType="ns1:Process"
+            operation="process" inputVariable="Invoke1_process_InputVariable"
+            outputVariable="Invoke1_process_OutputVariable"
+            bpelx:invokeAsDetail="no"/>
+    <assign name="Transform1">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"/>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("xsl/Transformation_1.xsl", $Invoke1_process_OutputVariable.payload)</from>
+        <to variable="outputVariable" part="payload"/>
+      </copy>
+    </assign>
+    <!--assign name="Assign3" >
+      <copy keepSrcElementName="no" bpelx:insertMissingToData="yes" >
+        <from>$outputVariable.payload/ns2:parameter</from>
+        <to>$Invoke1_process_OutputVariable.payload/ns2:parameter</to>
+      </copy>
+      <copy keepSrcElementName="no" bpelx:insertMissingToData="yes">
+        <from>$outputVariable.payload/ns2:status</from>
+        <to>$Invoke1_process_OutputVariable.payload/ns2:status</to>
+      </copy>
+    </assign-->
+    <reply name="replyOutput" partnerLink="bpelprocess_client"
+           portType="client:BPELProcess" operation="process"
+           variable="outputVariable"/>
+  </sequence>
+</process>

@@ -1,0 +1,20 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.oracle.com/ateam/dynamic"
+     targetNamespace="http://www.oracle.com/ateam/dynamic" elementFormDefault="qualified">
+    <xsd:element name="input">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Endpoint" type="xsd:string"/>
+                <xsd:element name="parameter" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="output">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="parameter" type="xsd:string"/>
+                <xsd:element name="status" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

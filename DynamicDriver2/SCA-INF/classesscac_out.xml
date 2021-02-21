@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>error</severity>
+      <loc>/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='process']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='variables']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='variable'][@name='Invoke1_process_InputVariable']</loc>
+      <line>78</line>
+      <col/>
+      <file>BPELProcess.bpel</file>
+      <name>BPELProcess.bpel</name>
+      <fix>Make sure that value "ns1:ProcessRequestMessage" is resolvable (check imports, value of "messageType").</fix>
+      <msg>"messageType" is set to "ns1:ProcessRequestMessage" on this &lt;bpel:variable>  but it cannot be resolved (check value of "messageType", imports, WSDLs or XSDs).</msg>
+   </Fault>
+   <Fault>
+      <severity>error</severity>
+      <loc>/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='process']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='variables']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='variable'][@name='Invoke1_process_OutputVariable']</loc>
+      <line>80</line>
+      <col/>
+      <file>BPELProcess.bpel</file>
+      <name>BPELProcess.bpel</name>
+      <fix>Make sure that value "ns1:ProcessResponseMessage" is resolvable (check imports, value of "messageType").</fix>
+      <msg>"messageType" is set to "ns1:ProcessResponseMessage" on this &lt;bpel:variable>  but it cannot be resolved (check value of "messageType", imports, WSDLs or XSDs).</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc>/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='process']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='sequence'][@name='main']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='invoke'][@name='Invoke1']</loc>
+      <line>141</line>
+      <col/>
+      <file>BPELProcess.bpel</file>
+      <name>BPELProcess.bpel</name>
+      <fix>Check the bpel:variable specified on this activity via attribute "outputVariable" and make sure it is itself specified correctly.</fix>
+      <msg>The activity &lt;bpel:invoke> refers to a bpel:variable (via the attribute "outputVariable") - this bpel:variable needs to be defined correctly.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc>/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='process']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='sequence'][@name='main']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='invoke'][@name='Invoke1']</loc>
+      <line>141</line>
+      <col/>
+      <file>BPELProcess.bpel</file>
+      <name>BPELProcess.bpel</name>
+      <fix>Check the bpel:variable specified on this activity via attribute "inputVariable" and make sure it is itself specified correctly.</fix>
+      <msg>The activity &lt;bpel:invoke> refers to a bpel:variable (via the attribute "inputVariable") - this bpel:variable needs to be defined correctly.</msg>
+   </Fault>
+   <Fault>
+      <severity>error</severity>
+      <loc>/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='process']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='sequence'][@name='main']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='invoke'][@name='Invoke1']</loc>
+      <line>141</line>
+      <col/>
+      <file>BPELProcess.bpel</file>
+      <name>BPELProcess.bpel</name>
+      <fix>Make sure that value "ns1:Process" is resolvable (check imports, value of "portType").</fix>
+      <msg>"portType" is set to "ns1:Process" on this &lt;bpel:invoke> activity but it cannot be resolved (check value of "portType", imports, WSDLs or XSDs).</msg>
+   </Fault>
+   <Fault>
+      <severity>error</severity>
+      <loc>/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='process']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='sequence'][@name='main']/*[namespace-uri()='http://docs.oasis-open.org/wsbpel/2.0/process/executable'][local-name()='invoke'][@name='Invoke1']</loc>
+      <line>141</line>
+      <col/>
+      <file>BPELProcess.bpel</file>
+      <name>BPELProcess.bpel</name>
+      <fix>Check value of operation ("process") and portType "ns6:execute_ptt".</fix>
+      <msg>No "wsdl:input" message exist on portType "ns6:execute_ptt" with operation "process".</msg>
+   </Fault>
+</Faults>

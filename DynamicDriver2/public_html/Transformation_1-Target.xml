@@ -1,0 +1,5 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ns1:output xmlns:ns1="http://www.oracle.com/ateam/dynamic">
+   <ns1:parameter>parameter1</ns1:parameter>
+   <ns1:status>status2</ns1:status>
+</ns1:output>
